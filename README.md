@@ -13,7 +13,7 @@ Backend for a e-commerce site.  Features MySQL, Sequelize and Express.js
 - [License](#license-MIT)
 - [Test](#tests-🧪)
 - [Contibuters](#Contributors-🧑‍🤝‍🧑)
-- [Deployed Application](#deployed-application-🚀)
+- [Link to Video](#Tuturial Video-🚀)
 
 ## Installation ⚙️
 Prerequisites: MySQL installed, Sequelize and Express.js
@@ -25,11 +25,11 @@ Clone repository from https://www.github.com/mojo718
 ## License
       This application is covered by the MIT license.
 
-## Tests 🧪
-NA
-
 ## Contributors 🧑‍🤝‍🧑
 Ben Montijo
+
+## Tuturial Video-🚀
+https://app.screencastify.com/v3/watch/tgBQ3pnwwXF7I9SkPI7g
 
 ## Questions 🙋
 If there are any questions, feel free to contact my email at: mojo718@yahoo.com

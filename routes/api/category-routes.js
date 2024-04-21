@@ -3,12 +3,11 @@ const { Category, Product } = require('../../models');
 
 // The `/api/categories` endpoint
 // Starting my CRUD code here 
-
 router.get('/', async (req, res) => {
   // find all categories
   // be sure to include its associated Products
   try {
-    const categories = await.findAll({
+    const categories = await Category.findAll({
       include: [{ model: Product }]
     });
     res.status(200).json(categories)
@@ -22,7 +21,7 @@ router.get('/:id', async (req, res) => {
   // be sure to include its associated Products
   try {
     const categories = await Category.findByPK(req.params.id, {
-      include: [{ model, Product }]
+      include: [{ model: Product }]
     });
     //conditional statement - if categories not found return 404 error
     if (!categories) {
@@ -31,7 +30,7 @@ router.get('/:id', async (req, res) => {
     }
     res.status(200).json(categories);
   } catch (error) {
-    res.status(500).json(err);
+    res.status(500).json(error);
   }
 });
 
@@ -47,15 +46,21 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   // update a category by its `id` value
-  Category.update(req.body, {
-    where: {
-      id: req.params.id,
-    },
-  })
-  res.status(200).json()
+  try {
+    const categories = await Category.findByPk(req.params.id);
+    if (!categories) {
+      res.status(404).json({ message: 'Category not found' });
+      return;
+    }
+    await categories.update(req.body);
+    res.status(200).json(categories);
+  } catch (error) {
+    console.log(error);
+    res.status(400).json(error);
+  }
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   // delete a category by its `id` value
   try {
     const categories = await Category.destroy({
@@ -67,7 +72,7 @@ router.delete('/:id', (req, res) => {
       res.status(404).json()
       return;
     }
-    res.status(200).json.(categories);
+    res.status(200).json(categories);
   } catch (err) {
     res.status(500).json.json(err);
   }
